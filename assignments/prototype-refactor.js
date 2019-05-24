@@ -28,3 +28,51 @@ Prototype Refactor
               return `${this.name} was removed from the game.`;
           }
   }
+
+  /*function CharacterStats(characterStatsOptions) {
+    GameObject.call(this, characterStatsOptions);
+    this.healthPoints = characterStatsOptions.healthPoints;
+  }
+  
+  // Sets up inheritance with GameObject
+  CharacterStats.prototype = Object.create(GameObject.prototype);
+  
+  CharacterStats.prototype.takeDamage = function () {
+    return `${this.name} took damage.`;
+  }; */
+
+  class CharacterStats extends GameObject{
+  constructor(healthPoints){
+      super(healthPoints);
+      this.name=name;
+  }
+  takeDamage(){
+      return `${this.name} took damage.`;
+  }
+}
+
+/* function Humanoid(humanoidOptions) {
+  CharacterStats.call(this, humanoidOptions);
+  this.team = humanoidOptions.team;
+  this.weapons = humanoidOptions.weapons;
+  this.language = humanoidOptions.language;
+}
+
+Humanoid.prototype = Object.create(CharacterStats.prototype);
+
+Humanoid.prototype.greet = function () {
+  return `${this.name} offers a greeting in ${this.language}.`;
+}; */
+
+class Humanoid extends CharacterStats{
+    constructor(team, weapons, language){
+        super(team,weapons,language);
+        this.team= team;
+        this.weapons=weapons;
+        this.language=language;
+
+    }
+    greet(){
+        return `${this.name} offers a greeting in ${this.language}.`;
+    }
+}
